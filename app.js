@@ -2,7 +2,7 @@ const express = require('express')
 const cors = require('cors')
 const bodyparser = require('body-parser')
 
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 3333
 const app = express();
 app.use(cors());
 
@@ -17,13 +17,7 @@ app.get('/', (req, res) => {
 })
 app.use(express.static(__dirname + '/build'));
 
-// catch 404 and forward to error handler
-app.use(function (req, res, next) {
-    res.sendFile(__dirname + "/build/index.html")
-    // next(createError(404));
-  });
 
-  
 //actual routes for users
 const User = require('./Routes/User')
 app.use('/auth', User)
@@ -34,6 +28,11 @@ app.use('/chat', Chat)
 
 
 
+// catch 404 and forward to error handler
+app.use(function (req, res, next) {
+    res.sendFile(__dirname + "/build/index.html")
+    // next(createError(404));
+  });
 
 app.listen(PORT, () => {
     console.log(`App running on ${PORT}`)

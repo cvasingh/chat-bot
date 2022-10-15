@@ -22,7 +22,7 @@ router.post('/chatList', async (req, res) => {
         email: { $eq: req.body.email }
     }, { messages: 1 }, (err, docs) => {
         if (docs.length > 0) {
-            res.send(docs[0]?.messages)
+            res.send(docs[0])
         } else {
             res.send('E')
         }
