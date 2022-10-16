@@ -1,5 +1,6 @@
 {
-  "name": "chatting",
+  "name": "chat-bot",
+  "homepage": ".",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",

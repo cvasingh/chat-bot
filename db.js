@@ -33,6 +33,9 @@ const userSchema = new mongoose.Schema({
     dob: {
         type: String,
     },
+    dp: {
+        type: String,
+    },
     lang: {
         type: String,
     },

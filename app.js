@@ -2,6 +2,7 @@ const express = require('express')
 const cors = require('cors')
 const bodyparser = require('body-parser')
 
+var path = require('path');
 const PORT = process.env.PORT || 3333
 const app = express();
 app.use(cors());
@@ -11,16 +12,16 @@ app.use(cors());
 app.use(bodyparser.urlencoded({ extended: false }))
 app.use(express.json())
 
+app.use(express.static(path.join(__dirname, 'build')));
+
 //default router
-app.get('/', (req, res) => {
-    res.sendFile(__dirname + "/build/index.html");
+app.get('/*', (req, res) => {
+  res.sendFile(__dirname + "/build/index.html");
 })
-app.use(express.static(__dirname + '/build'));
 
-
-//actual routes for users
-const User = require('./Routes/User')
-app.use('/auth', User)
+//actual routes for Auths
+const Auth = require('./Routes/Auth')
+app.use('/auth', Auth)
 
 //actual routes for Chats
 const Chat = require('./Routes/Chat')
